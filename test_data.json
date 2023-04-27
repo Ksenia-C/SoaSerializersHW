@@ -1,0 +1,32 @@
+{
+    "type": "record",
+    "name": "TestDataAvro",
+    "fields": [
+        {
+            "name": "f64",
+            "type": "double"
+        },
+        {
+            "name": "u64",
+            "type": "long"
+        },
+        {
+            "name": "one_str",
+            "type": "string"
+        },
+        {
+            "name": "one_array",
+            "type": {
+                "type": "array",
+                "items": "int"
+            }
+        },
+        {
+            "name": "one_map",
+            "type": {
+                "type": "map",
+                "values": "int"
+            }
+        }
+    ]
+}

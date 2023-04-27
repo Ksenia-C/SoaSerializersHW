@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package TEST_DATA;
+
+message Test_Data {
+    string one_str = 1;
+    repeated int32 one_array = 2;
+    map<string, int32> one_map = 3;
+    int64 u64 = 4;
+    double f64 = 5;
+}

@@ -1,0 +1,17 @@
+version: "3"
+
+services:
+  serializer-common:
+
+    build:
+      context: .
+      dockerfile: Dockerfiles/restbed.Dockerfile
+    image: serializer/common:1.0
+
+  serializer-boost:
+    depends_on:
+      - serializer-common
+    build:
+      context: .
+      dockerfile: Dockerfiles/boost.Dockerfile
+    image: serializer/boost:1.0

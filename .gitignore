@@ -1,0 +1,6 @@
+serializers/test_data.pb.cc
+serializers/test_data.pb.h
+serializers/test_data.hh
+serializers/serializer.hpp
+restbed
+.vscode

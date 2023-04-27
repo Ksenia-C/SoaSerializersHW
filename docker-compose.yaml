@@ -1,0 +1,99 @@
+version: "3"
+
+services:
+  serializer-text:
+
+    # build:
+    #   context: .
+    #   dockerfile: Dockerfiles/text.Dockerfile
+    image: kseniac/soa_rest_serializer_test:text
+    container_name: serializer-text
+    ports:
+      - 5002:5002
+    environment:
+      - PORT=5002
+
+  serializer-xml:
+
+    # build:
+    #   context: .
+    #   dockerfile: Dockerfiles/xml.Dockerfile
+    image: kseniac/soa_rest_serializer_test:xml
+    container_name: serializer-xml
+    ports:
+      - 5000:5000
+    environment:
+      - PORT=5000
+
+  serializer-json:
+
+    # build:
+    #   context: .
+    #   dockerfile: Dockerfiles/json.Dockerfile
+    image: kseniac/soa_rest_serializer_test:json
+    container_name: serializer-json
+    ports:
+      - 5004:5004
+    environment:
+      - PORT=5004
+  
+  serializer-proto:
+
+    # build:
+    #   context: .
+    #   dockerfile: Dockerfiles/proto.Dockerfile
+    image: kseniac/soa_rest_serializer_test:proto
+    container_name: serializer-proto
+    ports:
+      - 5001:5001
+    environment:
+      - PORT=5001
+  
+  serializer-avro:
+
+    # build:
+    #   context: .
+    #   dockerfile: Dockerfiles/avro.Dockerfile
+    image: kseniac/soa_rest_serializer_test:avro
+    container_name: serializer-avro
+    ports:
+      - 5006:5006
+    environment:
+      - PORT=5006
+
+  serializer-yaml:
+
+    # build:
+    #   context: .
+    #   dockerfile: Dockerfiles/yaml.Dockerfile
+    image: kseniac/soa_rest_serializer_test:yaml
+    container_name: serializer-yaml
+    ports:
+      - 5007:5007
+    environment:
+      - PORT=5007
+  
+  serializer-msg:
+
+    # build:
+    #   context: .
+    #   dockerfile: Dockerfiles/msg.Dockerfile
+    image: kseniac/soa_rest_serializer_test:msg
+    container_name: serializer-msg
+    ports:
+      - 5008:5008
+    environment:
+      - PORT=5008
+  
+  serializer-proxi:
+  
+    # build:
+    #   context: .
+    #   dockerfile: Dockerfiles/proxy.Dockerfile
+    image: kseniac/soa_rest_serializer_test:proxy
+    ports:
+      - 6000:6000
+    environment:
+      - PORT=6000
+  
+  
