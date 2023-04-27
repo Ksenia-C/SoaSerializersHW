@@ -13,9 +13,19 @@ using namespace restbed;
 void get_method_handler(const shared_ptr<Session> session)
 {
     const auto request = session->get_request();
-
-    int content_length = request->get_header("Content-Length", 0);
-    size_t test_size = request->get_query_parameter("test_size", 0);
+    int content_length;
+    size_t test_size;
+    try
+    {
+        content_length = request->get_header("Content-Length", 0);
+        test_size = request->get_query_parameter("test_size", 0);
+    }
+    catch (std::exception &err)
+    {
+        std::string results = "Unexpected error happened: ";
+        results.append(err.what());
+        session->close(BAD_REQUEST, results, {{"Content-Length", to_string(results.size())}});
+    }
 
     session->fetch(content_length, [test_size](const shared_ptr<Session> session, const Bytes &body)
                    {

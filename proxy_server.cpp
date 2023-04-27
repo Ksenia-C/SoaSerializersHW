@@ -49,14 +49,16 @@ void get_method_handler(const shared_ptr<Session> session)
 {
     const auto request = session->get_request();
 
-    int content_length = request->get_header("Content-Length", 0);
-    auto name = request->get_path_parameter("format");
-    std::string test_size = request->get_query_parameter("test_size", "0");
+    try
+    {
+        int content_length = request->get_header("Content-Length", 0);
+        auto name = request->get_path_parameter("format");
+        std::string test_size = request->get_query_parameter("test_size", "0");
 
-    const auto &[hosts, ports] = name != "all" ? get_handlers_addresses(name) : get_all_handlers_addresses();
+        const auto &[hosts, ports] = name != "all" ? get_handlers_addresses(name) : get_all_handlers_addresses();
 
-    session->fetch(content_length, [&](const shared_ptr<Session> session, const Bytes &body)
-                   {
+        session->fetch(content_length, [&](const shared_ptr<Session> session, const Bytes &body)
+                       {
                        try
                        {
                            std::vector<std::future<std::shared_ptr<Response>>> proxy_replies;
@@ -98,6 +100,13 @@ void get_method_handler(const shared_ptr<Session> session)
                             results.append(err.what());
                             session->close(INTERNAL_SERVER_ERROR, results, {{"Content-Length", to_string(results.size())}});
                        } });
+    }
+    catch (std::exception &err)
+    {
+        std::string results = "Unexpected error happened: ";
+        results.append(err.what());
+        session->close(BAD_REQUEST, results, {{"Content-Length", to_string(results.size())}});
+    }
 }
 
 int main(const int argc, char **argv)

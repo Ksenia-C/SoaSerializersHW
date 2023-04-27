@@ -50,6 +50,13 @@ CPU: xml - 252 - 0.027447ms - 0.036437ms
 
 ```sudo docker-compose up``` подтянет образы из docker hub и запустит контейнеры. 
 
+Если нужно обновить образы, выполните 
+```bash
+sudo docker-compose rm
+sudo docker rmi $(sudo docker images -a | grep "kseniac/soa_rest_serializer_test" | awk '{print $3}')
+sudo docker-compose up
+```
+
 Если нужно пересобирать образы локально, можно скопировать оба файла из __dev__ в корневую папку (осторожно с конфликтом имет docker-compose.yaml). Команда дальше рассчитаны на такое расположение файлов.
 
 Cначала нужно собрать
