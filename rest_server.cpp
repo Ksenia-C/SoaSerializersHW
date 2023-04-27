@@ -29,7 +29,7 @@ void get_method_handler(const shared_ptr<Session> session)
                         std::size_t fmt_line_sz = std::sprintf(fmt_data, "WAll: %s - %d - %fms - %fms\n", ser.get_name().data(), test_result_wall.test_struct_sz, test_result_wall.serialize_mean_time, test_result_wall.deserialize_mean_time);
                         std::string return_body(fmt_data, fmt_data + fmt_line_sz);
 
-                        fmt_line_sz = std::sprintf(fmt_data, "CPU: %s - %d - %fms - %fms", ser.get_name().data(), test_result_wall.test_struct_sz, test_result_cpu.serialize_mean_time, test_result_cpu.deserialize_mean_time);
+                        fmt_line_sz = std::sprintf(fmt_data, "CPU: %s - %d - %fms - %fms\n", ser.get_name().data(), test_result_wall.test_struct_sz, test_result_cpu.serialize_mean_time, test_result_cpu.deserialize_mean_time);
 
                         return_body+= std::string(fmt_data, fmt_data + fmt_line_sz);
 

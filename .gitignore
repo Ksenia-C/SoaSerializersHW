@@ -4,3 +4,4 @@ serializers/test_data.hh
 serializers/serializer.hpp
 restbed
 .vscode
+push_all.sh
